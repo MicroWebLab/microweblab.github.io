@@ -2,101 +2,274 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>MicroWebLab</title>
-
-  <meta
-    name="description"
-    content="MicroWebLab builds practical web tools designed to help with everyday needs."
-  >
-
-  <!-- Google AdSense verification -->
-  <meta
-    name="google-adsense-account"
-    content="ca-pub-5068287961704183"
-  >
-
+  <title>MicroWebLab | Practical Browser Tools, Calculators & Guides</title>
+  <meta name="description" content="Explore MicroWebLab's browser-based tools for EV charging research, resale profit calculations and YouTube music discovery, with practical guides and clear explanations.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://microweblab.github.io/">
+  <meta name="google-adsense-account" content="ca-pub-5068287961704183">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MicroWebLab | Useful Browser Tools and Practical Guides">
+  <meta property="og:description" content="Three focused browser applications, transparent estimates and practical guides for EV ownership, resale research and music discovery.">
+  <meta property="og:url" content="https://microweblab.github.io/">
+  <meta name="theme-color" content="#0f172a">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MicroWebLab",
+    "url": "https://microweblab.github.io/",
+    "description": "Practical browser-based tools and guides for electric vehicles, resale calculations and music discovery."
+  }
+  </script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f7f7;
-      color: #222;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    main {
-      width: 100%;
-      max-width: 700px;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    h1 {
-      margin: 0 0 20px;
-      font-size: 42px;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin: 0 auto 30px;
-    }
-
-    a {
-      display: inline-block;
-      padding: 14px 24px;
-      background: #222;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-
-    a:hover {
-      opacity: 0.85;
-    }
-
-    footer {
-      margin-top: 60px;
-      font-size: 14px;
-      color: #777;
-    }
+    :root { color-scheme: light; --ink:#0f172a; --text:#334155; --muted:#64748b; --blue:#2563eb; --line:#e2e8f0; --paper:#ffffff; --bg:#f5f8fc; }
+    *, *::before, *::after { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:90px; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; line-height:1.65; color:var(--text); background:var(--bg); }
+    a { color:#1d4ed8; }
+    a:focus-visible, summary:focus-visible { outline:3px solid #f59e0b; outline-offset:3px; }
+    .wrap { width:min(1140px, calc(100% - 40px)); margin-inline:auto; }
+    .site-header { background:#0f172a; color:#fff; position:sticky; top:0; z-index:10; box-shadow:0 4px 20px #0f172a25; }
+    .header-inner { min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:22px; flex-wrap:wrap; padding-block:12px; }
+    .brand { color:#fff; font-size:1.5rem; font-weight:800; text-decoration:none; letter-spacing:-.5px; }
+    .nav { display:flex; gap:18px; flex-wrap:wrap; }
+    .nav a { color:#e2e8f0; text-decoration:none; font-size:.92rem; font-weight:700; }
+    .nav a:hover, .footer-links a:hover { text-decoration:underline; }
+    .hero { color:#fff; background:linear-gradient(125deg,#1d4ed8 0%,#1e40af 45%,#0f172a 100%); padding:94px 0 98px; }
+    .hero-inner { max-width:850px; }
+    .eyebrow { display:inline-block; font-size:.78rem; font-weight:800; letter-spacing:.09em; border:1px solid #ffffff55; background:#ffffff16; padding:7px 13px; border-radius:100px; }
+    h1,h2,h3 { line-height:1.2; color:var(--ink); }
+    h1 { color:#fff; font-size:clamp(2.7rem,6vw,4.3rem); letter-spacing:-.04em; margin:24px 0 18px; }
+    .hero p { color:#e0e7ff; font-size:1.15rem; max-width:760px; margin:0 0 28px; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .btn { display:inline-block; border-radius:9px; padding:12px 20px; font-weight:800; text-decoration:none; background:#fff; color:#0f172a; }
+    .btn-outline { border:1px solid #ffffff90; color:#fff; background:transparent; }
+    .btn-primary { color:#fff; background:#2563eb; }
+    .btn:hover { filter:brightness(.94); }
+    section { padding:70px 0; }
+    section:nth-of-type(even) { background:#fff; }
+    .section-title { font-size:clamp(1.9rem,3.6vw,2.45rem); margin:0 0 12px; }
+    .intro { color:var(--muted); font-size:1.06rem; max-width:790px; margin:0 0 32px; }
+    .cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:27px; box-shadow:0 8px 26px #0f172a0a; display:flex; flex-direction:column; }
+    .card h3 { margin:8px 0 12px; font-size:1.5rem; }
+    .card p { margin:0 0 16px; }
+    .card ul { padding-left:20px; margin:0 0 22px; }
+    .card li { margin:6px 0; }
+    .card .btn { align-self:flex-start; margin-top:auto; }
+    .tag { display:inline-block; align-self:flex-start; border-radius:99px; padding:5px 10px; font-size:.75rem; font-weight:800; color:#1e40af; background:#dbeafe; }
+    .note { border-left:4px solid #2563eb; background:#eff6ff; padding:15px 18px; border-radius:0 8px 8px 0; margin:20px 0 0; }
+    .guides { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+    .guide { background:#f8fafc; border:1px solid var(--line); border-radius:14px; padding:26px; }
+    .guide h3 { font-size:1.3rem; margin:0 0 14px; }
+    .guide p { margin:0 0 14px; }
+    .guide p:last-child { margin-bottom:0; }
+    .example { background:#fff; border:1px solid #cbd5e1; padding:13px 15px; border-radius:8px; margin:14px 0; }
+    .two-col { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+    .panel { background:#fff; border:1px solid var(--line); border-radius:14px; padding:27px; }
+    .panel h3 { margin:0 0 13px; font-size:1.3rem; }
+    .panel p:last-child { margin-bottom:0; }
+    .faq { max-width:900px; }
+    details { background:#fff; border:1px solid var(--line); border-radius:11px; margin:12px 0; padding:18px 20px; }
+    summary { cursor:pointer; font-weight:800; color:var(--ink); }
+    details p { margin:12px 0 0; }
+    .site-footer { background:#0b1120; color:#cbd5e1; padding:35px 0; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:16px; margin-bottom:15px; }
+    .footer-links a { color:#e2e8f0; text-decoration:none; }
+    .small { color:#94a3b8; font-size:.86rem; }
+    @media (max-width:850px) { .cards { grid-template-columns:1fr; } .guides,.two-col { grid-template-columns:1fr; } }
+    @media (max-width:600px) { .header-inner { justify-content:center; } .nav { justify-content:center; gap:12px; } .hero { padding:68px 0; } section { padding:54px 0; } .wrap { width:min(1140px, calc(100% - 30px)); } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
   </style>
 </head>
-
 <body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="MicroWebLab home">MicroWebLab</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#apps">Apps</a>
+        <a href="#guides">Guides</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <main>
-    <h1>MicroWebLab</h1>
+  <main id="top">
+    <div class="hero">
+      <div class="wrap hero-inner">
+        <span class="eyebrow">PRACTICAL BROWSER-BASED TOOLS</span>
+        <h1>Simple tools.<br>Useful answers.</h1>
+        <p>MicroWebLab is an independent web project creating focused tools for electric-vehicle research, resale calculations, marketplace exploration and YouTube music discovery. Explore the applications, learn how their estimates work and check important information at its source.</p>
+        <div class="actions">
+          <a class="btn" href="#apps">Explore the three apps</a>
+          <a class="btn btn-outline" href="#guides">Read practical guides</a>
+        </div>
+      </div>
+    </div>
 
-    <p>
-      MicroWebLab builds practical web tools designed to help
-      with everyday needs.
-    </p>
+    <section id="apps" aria-labelledby="apps-title">
+      <div class="wrap">
+        <h2 class="section-title" id="apps-title">Three tools, three practical tasks</h2>
+        <p class="intro">Each application opens in your browser. You can start with a calculator or search feature, then use its built-in explanations to understand the result. No MicroWebLab account is required for the current web versions.</p>
+        <div class="cards">
+          <article class="card">
+            <span class="tag">EV &amp; CHARGING</span>
+            <h3>EVChargeWiseALL</h3>
+            <p>Explore electric vehicles, charging equipment, batteries and replacement-part research, with a practical charging calculator.</p>
+            <ul>
+              <li>Estimate charging time from battery energy and charging power.</li>
+              <li>Browse reference information for EV-related topics.</li>
+              <li>Follow links to independent automotive and marketplace services.</li>
+              <li>Read the EV Knowledge Center.</li>
+            </ul>
+            <p><strong>Important:</strong> Locally generated reference values are indicative estimates, not live marketplace quotes.</p>
+            <a class="btn btn-primary" href="https://microweblab.github.io/microweblab/evchargewiseall.html">Open EVChargeWiseALL</a>
+          </article>
+          <article class="card">
+            <span class="tag">RESELL &amp; MARKETPLACES</span>
+            <h3>ResellWiseALL</h3>
+            <p>Work through the numbers behind a resale decision, organize local inventory and open independent marketplaces for further research.</p>
+            <ul>
+              <li>Calculate profit and margin after expenses.</li>
+              <li>Track items in a browser-based inventory.</li>
+              <li>Open external marketplace search options.</li>
+              <li>Read the reselling Knowledge Center.</li>
+            </ul>
+            <p><strong>Important:</strong> Reference estimates do not replace real seller listings or verified transaction costs.</p>
+            <a class="btn btn-primary" href="https://microweblab.github.io/microweblab/resellwiseall.html">Open ResellWiseALL</a>
+          </article>
+          <article class="card">
+            <span class="tag">MUSIC &amp; DISCOVERY</span>
+            <h3>TuneWiseALL</h3>
+            <p>Search for publicly available YouTube music content and manage listening preferences through a browser-based interface.</p>
+            <ul>
+              <li>Search using YouTube services.</li>
+              <li>Play available videos in a visible YouTube player.</li>
+              <li>Organize favorites, playlists and a queue.</li>
+              <li>Explore playback and listening features.</li>
+            </ul>
+            <p><strong>Important:</strong> MicroWebLab does not host or distribute the underlying music files; availability is controlled by YouTube and content providers.</p>
+            <a class="btn btn-primary" href="https://microweblab.github.io/microweblab/tunewiseall.html">Open TuneWiseALL</a>
+          </article>
+        </div>
+        <p class="note">Looking for the full project portal? <a href="https://microweblab.github.io/microweblab/">Visit the MicroWebLab app portal</a> for more feature descriptions and its practical guides.</p>
+      </div>
+    </section>
 
-    <a href="https://microweblab.github.io/microweblab/">
-      Visit MicroWebLab
-    </a>
+    <section id="guides" aria-labelledby="guides-title">
+      <div class="wrap">
+        <h2 class="section-title" id="guides-title">Practical guides: understanding the result</h2>
+        <p class="intro">A useful calculator is only part of a good decision. The examples below explain what to include, what can change and why a reference number should not be mistaken for a guarantee.</p>
+        <div class="guides">
+          <article class="guide">
+            <h3>1. Estimating an EV charging session</h3>
+            <p>Begin with the amount of energy you want to add, not simply the full battery capacity. For a basic estimate, multiply usable battery capacity by the difference between your starting and target charge percentages. Then divide the required energy by the effective charging power.</p>
+            <div class="example"><strong>Example:</strong> A 60 kWh usable battery charged from 20% to 80% needs approximately 36 kWh. At a constant 7.4 kW, the ideal calculation is 36 ÷ 7.4 ≈ <strong>4.9 hours</strong>.</div>
+            <p>Real sessions can take longer because of charging losses, temperature, power limits, battery management and changing charging rates. For DC fast charging, power often decreases as the battery fills. Check your vehicle and charger specifications before planning a trip around an estimate.</p>
+            <p><a href="https://microweblab.github.io/microweblab/evchargewiseall.html">Explore the EV charging tool</a></p>
+          </article>
+          <article class="guide">
+            <h3>2. Calculating resale profit and margin</h3>
+            <p>A sale price is not profit. Include the purchase price, marketplace and payment fees, shipping paid by you, packaging, repairs and any other direct expenses. Profit is the amount remaining after these costs. Profit margin compares that profit with the selling price.</p>
+            <div class="example"><strong>Example:</strong> Sell an item for €90 after buying it for €50, paying €10 in fees, €7 for shipping and €2 for packaging. Profit is <strong>€21</strong>; profit margin is 21 ÷ 90 × 100 ≈ <strong>23.3%</strong>.</div>
+            <p>This does not automatically account for taxes, returns, unsold inventory or the value of your time. Those can materially affect the outcome. Before listing, compare actual completed sales and current fees on the marketplace you intend to use.</p>
+            <p><a href="https://microweblab.github.io/microweblab/resellwiseall.html">Explore the resale calculator</a></p>
+          </article>
+          <article class="guide">
+            <h3>3. Indicative prices are not live offers</h3>
+            <p>Some tools generate reference values using built-in factors rather than retrieving current listings from a seller's database. Such a figure can help frame a question, but it cannot confirm that a specific product exists at that price or is available to purchase.</p>
+            <p>When researching a vehicle, part or second-hand item, verify the exact model, condition, compatibility, delivery costs, seller location and listing date. Similar product names can describe very different configurations. A low estimate may exclude accessories, taxes or shipping.</p>
+            <p>MicroWebLab labels locally calculated values as indicative and directs visitors to independent services for current information. A marketplace link is a starting point for verification, not a guarantee or endorsement of a particular offer.</p>
+            <p><a href="https://microweblab.github.io/microweblab/">Read more about how MicroWebLab works</a></p>
+          </article>
+          <article class="guide">
+            <h3>4. How browser-based music discovery works</h3>
+            <p>A music discovery interface can help organize searches and listening choices without storing copies of songs. TuneWiseALL uses YouTube services and a visible embedded player for available videos. Favorites, queues and playlists organize references and preferences within the application.</p>
+            <p>Playback still depends on YouTube, the rights holder, regional availability and network access. A video may become unavailable or restricted, and embedded playback may be subject to provider policies. The application does not promise access to every track.</p>
+            <p>If you use shared devices, remember that browser-stored preferences may remain accessible in the same browser profile. Use the application's controls or your browser's storage settings when you want to clear local information.</p>
+            <p><a href="https://microweblab.github.io/microweblab/tunewiseall.html">Explore TuneWiseALL</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <footer>
-      © 2026 MicroWebLab
-    </footer>
+    <section id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <h2 class="section-title" id="about-title">About MicroWebLab</h2>
+        <p class="intro">MicroWebLab is a small independent project focused on making useful digital tasks more approachable. The aim is to offer working browser tools alongside explanations that help visitors interpret results responsibly.</p>
+        <div class="two-col">
+          <div class="panel">
+            <h3>What we build</h3>
+            <p>Our current projects focus on EV charging research, resale calculations and YouTube-based music discovery. Rather than requiring an account to access the core web versions, the tools are designed to open directly in a modern browser.</p>
+            <p>Some personal features, such as favorites or inventories, may use local browser storage. Each app provides more specific information about its features and integrations.</p>
+          </div>
+          <div class="panel">
+            <h3>How to use the information</h3>
+            <p>Calculations depend on their inputs and assumptions. Estimates are not live quotes, certified valuations or professional advice. Third-party marketplaces, automotive services and YouTube are independent of MicroWebLab.</p>
+            <p>Before spending money or making a technical decision, verify prices, compatibility, safety requirements and availability with the original provider or a qualified professional where appropriate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq">
+        <h2 class="section-title" id="faq-title">Frequently asked questions</h2>
+        <details><summary>Are the current MicroWebLab web apps free to open?</summary><p>Yes. The current browser versions can be opened without creating a MicroWebLab account. Features or business models may change in the future, and relevant changes should be disclosed on the affected application.</p></details>
+        <details><summary>Does MicroWebLab sell the products shown on marketplaces?</summary><p>No. Marketplace and automotive links lead to independent services. MicroWebLab does not control their listings, prices, availability or transaction terms.</p></details>
+        <details><summary>Are EV and resale estimates guaranteed?</summary><p>No. Charging calculations depend on battery and charger conditions. Resale calculations depend on accurate costs and fees. Locally generated reference prices are indicative, not live commercial offers.</p></details>
+        <details><summary>Can I use these tools on a phone?</summary><p>The tools are browser-based and are intended for modern browsers. Individual features may depend on device support, network availability or third-party services.</p></details>
+        <details><summary>Does TuneWiseALL store or download music files?</summary><p>No. It uses YouTube services and embedded playback for available videos. YouTube and content owners control the underlying media and its availability.</p></details>
+      </div>
+    </section>
+
+    <section id="privacy" aria-labelledby="privacy-title">
+      <div class="wrap">
+        <h2 class="section-title" id="privacy-title">Privacy and terms</h2>
+        <div class="two-col">
+          <article class="panel">
+            <h3>Privacy overview</h3>
+            <p>This landing page does not require registration or ask for a name, address or payment details. The code for this page does not load Google Analytics or an advertising script. The AdSense publisher verification meta tag identifies the site to Google; it does not itself display advertisements.</p>
+            <p>The site is hosted through GitHub Pages. Your browser, hosting provider and any third-party services you choose to open may process technical information under their own policies.</p>
+            <p>Individual MicroWebLab applications may use browser LocalStorage for preferences, favorites, playlists or inventories, and may connect to external services. Please consult the privacy information within each application before using those features.</p>
+          </article>
+          <article class="panel" id="terms">
+            <h3>Terms of use</h3>
+            <p>MicroWebLab provides educational information and practical tools on an as-available basis. Estimates and calculations are not guarantees of performance, financial results, market prices or product compatibility.</p>
+            <p>Verify important decisions directly with manufacturers, marketplaces, service providers or qualified advisers. External websites and platforms are operated by their respective owners, who control their content and terms.</p>
+            <p>Product names and third-party trademarks belong to their respective owners. Mentioning or linking to a service does not imply an official partnership.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 class="section-title" id="contact-title">Contact and feedback</h2>
+        <p class="intro">Have a question, found an error or want to suggest a practical improvement? Contact <a href="mailto:microweblabinfo@gmail.com">microweblabinfo@gmail.com</a>. Mention the application name and, if possible, the steps needed to reproduce a problem.</p>
+        <a class="btn btn-primary" href="https://microweblab.github.io/microweblab/">Explore the full MicroWebLab portal</a>
+      </div>
+    </section>
   </main>
 
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-links">
+        <a href="#apps">Apps</a>
+        <a href="#guides">Guides</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>© 2026 MicroWebLab · Practical tools for everyday digital tasks.</div>
+      <p class="small">Independent browser applications and educational information. Third-party platforms and trademarks belong to their respective owners.</p>
+    </div>
+  </footer>
 </body>
 </html>
